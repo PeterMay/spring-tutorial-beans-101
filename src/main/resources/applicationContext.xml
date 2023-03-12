@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Load the properties file. -->
+    <context:property-placeholder location="application.properties"/>
+
+    <!--
+    Bean with ID "myGoodFortuneService".
+    Whenever I get a bean with this id, the HappyFortuneService class will be fetched.
+    -->
+    <bean id="myGoodFortuneService"
+          class="com.springtutorial.beans101.Services.Impl.HappyFortuneService">
+    </bean>
+
+    <!--
+    Bean with ID "myGoodFortuneService".
+    Whenever I get a bean with this id, the HappyFortuneService class will be fetched.
+    -->
+    <bean id="myBadFortuneService"
+          class="com.springtutorial.beans101.Services.Impl.BadFortuneService">
+    </bean>
+
+    <!--
+    Bean with ID "myGoodCoach".
+    Whenever I get a bean with this id, the TrackCoach class will be fetched.
+    - Scope Singleton: Bean will reference a cached TrackCoach (Default).
+    - When Bean is initialized, the initBeanMethod will be called.
+    - When Bean is destroyed, the destroyBeanMethod will be called.
+    -->
+    <bean id="myGoodCoach"
+          class="com.springtutorial.beans101.Entities.Coach.TrackCoach"
+          scope="singleton"
+          init-method="initBeanMethod"
+          destroy-method="destroyBeanMethod">
+        <!--
+        Constructor Injection. Pass myGoodFortuneService bean to constructor parameter of "myGoodCoach" class.
+        -->
+        <constructor-arg ref="myGoodFortuneService"/>
+        <!--
+        Setter Injection. Inject Dependency on fortuneService, using Bean "myGoodFortuneService"
+        Look for public setFortuneService method and set myGoodFortuneService class.
+        -->
+        <property name="fortuneService" ref="myGoodFortuneService"/>
+        <!-- Setter Injection. Inject literal values on appropriate fields. -->
+        <!-- emailAddress - Hardcoded. -->
+        <property name="emailAddress" value="trackcoach@paok.gr"/>
+        <!-- team - Referenced value from properties file. -->
+        <property name="team" value="${coach.team}"/>
+    </bean>
+
+    <!--
+    Bean with ID "myBadCoach".
+    Whenever I get a bean with this id, the TrackCoach class will be fetched.
+    - Scope Singleton: Bean will create a new BaseballCoach Reference.
+    - When Bean is initialized, the initBeanMethod will be called.
+    - When Bean is destroyed, the destroyBeanMethod will NOT be called.
+      Spring does not call the destroy method of prototype scoped beans.
+      This is handled by the disposable (singleton scoped) bean: beanProcessor,
+      which tracks all prototype scoped beans.
+    -->
+    <bean id="myBadCoach"
+          class="com.springtutorial.beans101.Entities.Coach.BaseballCoach"
+          scope="prototype"
+          init-method="initBeanMethod"
+          destroy-method="destroyBeanMethod">
+        <!--
+        Constructor Injection. Pass myBadFortuneService bean to constructor parameter of "myBadCoach" class.
+        -->
+        <constructor-arg ref="myBadFortuneService"/>
+        <!--
+        Setter Injection. Inject Dependency on fortuneService, using Bean "myBadFortuneService"
+        Look for public setFortuneService method and set myGoodFortuneService class.
+        -->
+        <property name="fortuneService" ref="myBadFortuneService"/>
+        <!-- Setter Injection. Inject literal values on appropriate fields. -->
+        <!-- emailAddress - Hardcoded. -->
+        <property name="emailAddress" value="baseballcoach@paok.gr"/>
+        <!-- team - Referenced value from properties file. -->
+        <property name="team" value="${coach.team}"/>
+    </bean>
+
+    <!-- Bean to handle calling destroy methods on prototype scoped beans -->
+    <bean id="beanProcessor"
+          class="com.springtutorial.beans101.BeanFactory">
+    </bean>
+
+</beans>
