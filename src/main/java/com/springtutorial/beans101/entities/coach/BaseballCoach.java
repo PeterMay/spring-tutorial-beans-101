@@ -1,11 +1,12 @@
-package com.springtutorial.beans101.Entities.Coach;
+package com.springtutorial.beans101.entities.coach;
 
-import com.springtutorial.beans101.Services.FortuneService;
+import com.springtutorial.beans101.services.FortuneService;
+import org.springframework.beans.factory.DisposableBean;
 
 /**
  * Implements {@link Coach}.
  */
-public class FootballCoach implements Coach {
+public class BaseballCoach implements Coach, DisposableBean {
 
     // Dependency.
     private FortuneService fortuneServiceDependency;
@@ -18,8 +19,8 @@ public class FootballCoach implements Coach {
      *
      * @param fortuneService Dependency Injection of {@link FortuneService}.
      */
-    public FootballCoach(FortuneService fortuneService) {
-        System.out.println("Constructor Injection on FootballCoach: " + fortuneService.getClass().getSimpleName());
+    public BaseballCoach(FortuneService fortuneService) {
+        System.out.println("Constructor Injection on BaseballCoach: " + fortuneService.getClass().getSimpleName());
         this.fortuneServiceDependency = fortuneService;
     }
 
@@ -28,7 +29,7 @@ public class FootballCoach implements Coach {
      */
     @Override
     public void initBeanMethod() {
-        System.out.println("Initializing FootballCoach");
+        System.out.println("Initializing BaseballCoach");
     }
 
     /**
@@ -36,12 +37,12 @@ public class FootballCoach implements Coach {
      */
     @Override
     public void destroyBeanMethod() {
-        System.out.println("Destroying FootballCoach");
+        System.out.println("Destroying BaseballCoach");
     }
 
     @Override
     public String getDailyWorkout() {
-        return "Long shot practise for 1 hour.";
+        return "Spend 30 minutes on batting practise.";
     }
 
     @Override
@@ -54,7 +55,7 @@ public class FootballCoach implements Coach {
      */
     @Override
     public void setFortuneService(FortuneService fortuneServiceParam) {
-        System.out.println("Setter Injection on FootballCoach: " + fortuneServiceParam.getClass().getSimpleName());
+        System.out.println("Setter Injection on BaseballCoach: " + fortuneServiceParam.getClass().getSimpleName());
         this.fortuneServiceDependency = fortuneServiceParam;
     }
 
@@ -82,4 +83,8 @@ public class FootballCoach implements Coach {
         this.team = team;
     }
 
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("Prototype scoped: Destroying BaseballCoach");
+    }
 }

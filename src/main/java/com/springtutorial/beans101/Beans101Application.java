@@ -3,7 +3,7 @@ package com.springtutorial.beans101;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.springtutorial.beans101.Entities.Coach.Coach;
+import com.springtutorial.beans101.entities.coach.Coach;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @SpringBootApplication

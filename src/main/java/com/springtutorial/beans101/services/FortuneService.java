@@ -1,8 +1,8 @@
-package com.springtutorial.beans101.Services;
+package com.springtutorial.beans101.services;
 
-import com.springtutorial.beans101.Entities.Coach.Coach;
-import com.springtutorial.beans101.Services.Impl.BadFortuneService;
-import com.springtutorial.beans101.Services.Impl.HappyFortuneService;
+import com.springtutorial.beans101.entities.coach.Coach;
+import com.springtutorial.beans101.services.impl.BadFortuneService;
+import com.springtutorial.beans101.services.impl.HappyFortuneService;
 
 /**
  * To be used as dependency injection on {@link Coach}.

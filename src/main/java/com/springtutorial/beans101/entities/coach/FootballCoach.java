@@ -1,11 +1,11 @@
-package com.springtutorial.beans101.Entities.Coach;
+package com.springtutorial.beans101.entities.coach;
 
-import com.springtutorial.beans101.Services.FortuneService;
+import com.springtutorial.beans101.services.FortuneService;
 
 /**
  * Implements {@link Coach}.
  */
-public class TrackCoach implements Coach {
+public class FootballCoach implements Coach {
 
     // Dependency.
     private FortuneService fortuneServiceDependency;
@@ -18,8 +18,8 @@ public class TrackCoach implements Coach {
      *
      * @param fortuneService Dependency Injection of {@link FortuneService}.
      */
-    public TrackCoach(FortuneService fortuneService) {
-        System.out.println("Constructor Injection on TrackCoach: " + fortuneService.getClass().getSimpleName());
+    public FootballCoach(FortuneService fortuneService) {
+        System.out.println("Constructor Injection on FootballCoach: " + fortuneService.getClass().getSimpleName());
         this.fortuneServiceDependency = fortuneService;
     }
 
@@ -28,7 +28,7 @@ public class TrackCoach implements Coach {
      */
     @Override
     public void initBeanMethod() {
-        System.out.println("Initializing TrackCoach");
+        System.out.println("Initializing FootballCoach");
     }
 
     /**
@@ -36,17 +36,17 @@ public class TrackCoach implements Coach {
      */
     @Override
     public void destroyBeanMethod() {
-        System.out.println("Destroying TrackCoach");
+        System.out.println("Destroying FootballCoach");
     }
 
     @Override
     public String getDailyWorkout() {
-        return "Run 5 stadium rounds.";
+        return "Long shot practise for 1 hour.";
     }
 
     @Override
     public String getDailyFortune() {
-        return "Just Do It: " + fortuneServiceDependency.getFortune();
+        return fortuneServiceDependency.getFortune();
     }
 
     /**
@@ -54,7 +54,7 @@ public class TrackCoach implements Coach {
      */
     @Override
     public void setFortuneService(FortuneService fortuneServiceParam) {
-        System.out.println("Setter Injection on TrackCoach: " + fortuneServiceParam.getClass().getSimpleName());
+        System.out.println("Setter Injection on FootballCoach: " + fortuneServiceParam.getClass().getSimpleName());
         this.fortuneServiceDependency = fortuneServiceParam;
     }
 
@@ -66,7 +66,7 @@ public class TrackCoach implements Coach {
      * {@inheritDoc}
      */
     public void setEmailAddress(String emailAddress) {
-        System.out.println("Setter Injection literal value on Email Address: " + emailAddress);
+        System.out.println("Setter Injection on Email Address: " + emailAddress);
         this.emailAddress = emailAddress;
     }
 

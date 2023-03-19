@@ -1,6 +1,6 @@
-package com.springtutorial.beans101.Entities.Coach;
+package com.springtutorial.beans101.entities.coach;
 
-import com.springtutorial.beans101.Services.FortuneService;
+import com.springtutorial.beans101.services.FortuneService;
 
 /**
  * The coach interface - can be implemented by many classes.

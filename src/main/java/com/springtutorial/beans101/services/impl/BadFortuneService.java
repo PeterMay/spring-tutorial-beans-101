@@ -1,6 +1,6 @@
-package com.springtutorial.beans101.Services.Impl;
+package com.springtutorial.beans101.services.impl;
 
-import com.springtutorial.beans101.Services.FortuneService;
+import com.springtutorial.beans101.services.FortuneService;
 
 public class BadFortuneService implements FortuneService {
 

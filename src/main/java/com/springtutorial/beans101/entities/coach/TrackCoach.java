@@ -1,12 +1,11 @@
-package com.springtutorial.beans101.Entities.Coach;
+package com.springtutorial.beans101.entities.coach;
 
-import com.springtutorial.beans101.Services.FortuneService;
-import org.springframework.beans.factory.DisposableBean;
+import com.springtutorial.beans101.services.FortuneService;
 
 /**
  * Implements {@link Coach}.
  */
-public class BaseballCoach implements Coach, DisposableBean {
+public class TrackCoach implements Coach {
 
     // Dependency.
     private FortuneService fortuneServiceDependency;
@@ -19,8 +18,8 @@ public class BaseballCoach implements Coach, DisposableBean {
      *
      * @param fortuneService Dependency Injection of {@link FortuneService}.
      */
-    public BaseballCoach(FortuneService fortuneService) {
-        System.out.println("Constructor Injection on BaseballCoach: " + fortuneService.getClass().getSimpleName());
+    public TrackCoach(FortuneService fortuneService) {
+        System.out.println("Constructor Injection on TrackCoach: " + fortuneService.getClass().getSimpleName());
         this.fortuneServiceDependency = fortuneService;
     }
 
@@ -29,7 +28,7 @@ public class BaseballCoach implements Coach, DisposableBean {
      */
     @Override
     public void initBeanMethod() {
-        System.out.println("Initializing BaseballCoach");
+        System.out.println("Initializing TrackCoach");
     }
 
     /**
@@ -37,17 +36,17 @@ public class BaseballCoach implements Coach, DisposableBean {
      */
     @Override
     public void destroyBeanMethod() {
-        System.out.println("Destroying BaseballCoach");
+        System.out.println("Destroying TrackCoach");
     }
 
     @Override
     public String getDailyWorkout() {
-        return "Spend 30 minutes on batting practise.";
+        return "Run 5 stadium rounds.";
     }
 
     @Override
     public String getDailyFortune() {
-        return fortuneServiceDependency.getFortune();
+        return "Just Do It: " + fortuneServiceDependency.getFortune();
     }
 
     /**
@@ -55,7 +54,7 @@ public class BaseballCoach implements Coach, DisposableBean {
      */
     @Override
     public void setFortuneService(FortuneService fortuneServiceParam) {
-        System.out.println("Setter Injection on BaseballCoach: " + fortuneServiceParam.getClass().getSimpleName());
+        System.out.println("Setter Injection on TrackCoach: " + fortuneServiceParam.getClass().getSimpleName());
         this.fortuneServiceDependency = fortuneServiceParam;
     }
 
@@ -67,7 +66,7 @@ public class BaseballCoach implements Coach, DisposableBean {
      * {@inheritDoc}
      */
     public void setEmailAddress(String emailAddress) {
-        System.out.println("Setter Injection on Email Address: " + emailAddress);
+        System.out.println("Setter Injection literal value on Email Address: " + emailAddress);
         this.emailAddress = emailAddress;
     }
 
@@ -83,8 +82,4 @@ public class BaseballCoach implements Coach, DisposableBean {
         this.team = team;
     }
 
-    @Override
-    public void destroy() throws Exception {
-        System.out.println("Prototype scoped: Destroying BaseballCoach");
-    }
 }

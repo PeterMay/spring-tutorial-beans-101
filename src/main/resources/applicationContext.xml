@@ -15,7 +15,7 @@
     Whenever I get a bean with this id, the HappyFortuneService class will be fetched.
     -->
     <bean id="myGoodFortuneService"
-          class="com.springtutorial.beans101.Services.Impl.HappyFortuneService">
+          class="com.springtutorial.beans101.services.impl.HappyFortuneService">
     </bean>
 
     <!--
@@ -23,7 +23,7 @@
     Whenever I get a bean with this id, the HappyFortuneService class will be fetched.
     -->
     <bean id="myBadFortuneService"
-          class="com.springtutorial.beans101.Services.Impl.BadFortuneService">
+          class="com.springtutorial.beans101.services.impl.BadFortuneService">
     </bean>
 
     <!--
@@ -34,7 +34,7 @@
     - When Bean is destroyed, the destroyBeanMethod will be called.
     -->
     <bean id="myGoodCoach"
-          class="com.springtutorial.beans101.Entities.Coach.TrackCoach"
+          class="com.springtutorial.beans101.entities.coach.TrackCoach"
           scope="singleton"
           init-method="initBeanMethod"
           destroy-method="destroyBeanMethod">
@@ -65,7 +65,7 @@
       which tracks all prototype scoped beans.
     -->
     <bean id="myBadCoach"
-          class="com.springtutorial.beans101.Entities.Coach.BaseballCoach"
+          class="com.springtutorial.beans101.entities.coach.BaseballCoach"
           scope="prototype"
           init-method="initBeanMethod"
           destroy-method="destroyBeanMethod">
